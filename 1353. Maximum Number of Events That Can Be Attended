@@ -1,0 +1,30 @@
+class Solution {
+    public int maxEvents(int[][] events) {
+        int n = events.length;
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        Arrays.sort(events,(a,b) -> Integer.compare(a[0],b[0]));
+        int res = 0;
+        int day = events[0][0];
+        int lastDay = 0;
+            for(int i=0;i<events.length;i++){
+                lastDay = Math.max(lastDay,events[i][1]);
+            }
+            int i=0;
+            while(day <= lastDay){
+                while(i<n && events[i][0]==day){
+                    minHeap.offer(events[i][1]);
+                    i++;
+                }
+                //remove events already attended
+                while(!minHeap.isEmpty() && minHeap.peek()<day){
+                    minHeap.poll();
+                }
+                if(!minHeap.isEmpty()){
+                    minHeap.poll();
+                    res++;
+                }
+                day++;
+            }
+            return res;
+        }
+    }
