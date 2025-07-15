@@ -1,0 +1,27 @@
+class Solution {
+    public void function(char[] arr,boolean[] val){
+        for(int i=0;i<arr.length;i++){
+            char ch = arr[i];
+            if(ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+             ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U'){
+                val[0] = true;
+            }
+            //consonents
+            else if(Character.isLetter(ch)){
+             val[1] = true;   
+            }
+        }
+    }
+    public boolean isValid(String word) {
+        boolean[] ans = new boolean[2];
+        if(word.length()<3) return false;
+        char[] arr = word.toCharArray();
+        for(char ch : arr)
+        if(!Character.isLetterOrDigit(ch)) return false;
+        function(arr,ans);
+        for(boolean ele : ans){
+            if(ele == false) return false;
+        }
+        return true;
+    }
+}
