@@ -9,7 +9,7 @@ class Solution {
         Arrays.sort(trainers);
         while(i<m && j<n){
             if(players[i]<=trainers[j]){
-                count++;
+                count++; 
                 i++;
                 j++;
             }
